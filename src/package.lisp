@@ -1,4 +1,4 @@
 ;;;; package.lisp
 
-(defpackage #:lisp-webview
+(defpackage #:webview
   (:use #:cl))

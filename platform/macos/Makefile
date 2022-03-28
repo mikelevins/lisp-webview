@@ -6,4 +6,4 @@ dylib:
 
 clean:
 	rm -f test_webview webview.dylib
-	rm *~
+	rm -f *~
