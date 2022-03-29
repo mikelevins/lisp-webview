@@ -4,3 +4,4 @@
 /platform/win64/test_webview.exe
 /platform/win64/test_webview.obj
 /platform/win64/version.obj
+/platform/win64/test-lisp-webview
