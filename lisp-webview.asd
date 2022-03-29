@@ -1,10 +1,10 @@
 ;;;; lisp-webview.asd
 
 (asdf:defsystem #:lisp-webview
-  :description "Describe lisp-webview here"
-  :author "Your Name <your.name@example.com>"
-  :license  "Specify license here"
-  :version "0.0.1"
+  :description "A Common Lisp wrapper for the webview.h platform browser library"
+  :author "mikel evins <mikel@evins.net>"
+  :license  "Apache 2.0"
+  :version "0.0.2"
   :serial t
   :depends-on (:cffi)
   :components ((:module "src"
