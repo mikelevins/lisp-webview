@@ -5,3 +5,4 @@
 /platform/win64/test_webview.obj
 /platform/win64/version.obj
 /platform/win64/test-lisp-webview
+/platform/linux/fedora64/test-lisp-webview
