@@ -5,4 +5,8 @@
 /platform/win64/test_webview.obj
 /platform/win64/version.obj
 /platform/win64/test-lisp-webview
+<<<<<<< HEAD
 /platform/win64/test-lisp-webview.exe
+=======
+/platform/linux/fedora64/test-lisp-webview
+>>>>>>> 757c67cb2c71a462c249df1241f2d32a9c05bab7
