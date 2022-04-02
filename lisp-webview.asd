@@ -16,7 +16,16 @@
 #+nil (webview::patch-version)
 
 
-#+sbcl
+#+(and sbcl windows)
+(defun make-test ()
+  (asdf:load-system :lisp-webview)
+  (save-lisp-and-die "test-lisp-webview.EXE"
+                     :toplevel (lambda (&rest ignore)
+                                 (format t "~%test started~%")
+                                 (funcall (intern "TESTWIN" (find-package "WEBVIEW")))
+                                 (format t "~%test ended~%"))
+                     :executable t ))
+
 (defun make-test ()
   (asdf:load-system :lisp-webview)
   (save-lisp-and-die "test-lisp-webview"
