@@ -25,3 +25,5 @@
                                  (funcall (intern "TESTWIN" (find-package "WEBVIEW")))
                                  (format t "~%test ended~%"))
                      :executable t ))
+
+#+nil (make-test)
