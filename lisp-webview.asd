@@ -1,5 +1,7 @@
 ;;;; lisp-webview.asd
 
+(defparameter +swank-port+ 10101)
+
 (asdf:defsystem #:lisp-webview
   :description "A Common Lisp wrapper for the webview.h platform browser library"
   :author "mikel evins <mikel@evins.net>"
@@ -10,7 +12,11 @@
   :components ((:module "src"
                 :serial t
                 :components ((:file "package")
-                             (:file "webview")))))
+                             (:file "webview"))))
+  :perform (asdf:load-op :after (op c)
+                         (progn (load "lib/slime-v2.26.1/swank-loader.lisp")
+                                (swank:create-server :port +swank-port+ :style nil))))
+
 
 #+nil (asdf:load-system :lisp-webview)
 #+nil (webview::patch-version)
