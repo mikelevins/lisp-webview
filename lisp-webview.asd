@@ -20,6 +20,7 @@
 
 #+nil (asdf:load-system :lisp-webview)
 #+nil (webview::patch-version)
+#+nil (webview::minor-version)
 
 
 #+(and sbcl windows)

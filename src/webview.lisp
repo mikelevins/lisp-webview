@@ -10,13 +10,15 @@
   (progn
     ;; we need the Lisp's working directory to be the win64 directory in order to find the
     ;; DLL dependencies
-    #+windows (sb-posix:chdir (asdf:system-relative-pathname :lisp-webview "platform/win64/"))
+    #+(and windows sbcl) (sb-posix:chdir (asdf:system-relative-pathname :lisp-webview "platform/win64/"))
+    #+(and windows allegro) (excl:chdir (asdf:system-relative-pathname :lisp-webview "platform/win64/"))
     (cffi::register-foreign-library 'webview `((:darwin ,$webview-pathname)
                                              (:windows ,$webview-pathname)))))
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (cffi-sys::%load-foreign-library 'webview $webview-pathname))
 
+#+sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (sb-int:set-floating-point-modes :traps nil))
 
