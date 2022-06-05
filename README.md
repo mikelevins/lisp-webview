@@ -3,7 +3,7 @@
 
 A Lisp wrapper for webview.h (see https://github.com/webview/webview).
 
-Test so far on macOS with SBCL. The DLL builds for win64 but the Lisp interface is not yet tested.
+Currently testing on Windows 10.
 
 The code in the platform subdirectory builds shared libraries that can be loaded into Lisp using CFFI.
 
@@ -13,7 +13,7 @@ Note that you cannot reliably load the code into a swank session and then run a 
 
 You can, however, start sbcl in a terminal, then load this code, then call (webview::testwin) to create a working browser window. You can also the makefile at the root of the project to build a Lisp program that creates a working browser window.
 
-Additional functionality to follow.
+I plan to add code to load swank and start a swank listener process so that Emacs and SLIME can connect to the running application.
 
 ## License
 
