@@ -28,7 +28,8 @@
                                  (format t "~%test started~%")
                                  (funcall (intern "TESTWIN" (find-package "WEBVIEW")))
                                  (format t "~%test ended~%"))
-                     :executable t ))
+                     :executable t
+                     :application-type :gui))
 
 #+(or linux darwin)
 (defun make-test ()
