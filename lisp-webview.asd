@@ -12,10 +12,7 @@
   :components ((:module "src"
                 :serial t
                 :components ((:file "package")
-                             (:file "webview"))))
-  :perform (asdf:load-op :after (op c)
-                         (progn (load "lib/slime-v2.26.1/swank-loader.lisp")
-                                (swank:create-server :port +swank-port+ :style nil))))
+                             (:file "webview")))))
 
 
 #+nil (asdf:load-system :lisp-webview)
@@ -23,16 +20,17 @@
 #+nil (webview::minor-version)
 
 
-#+(and sbcl windows)
+#+(and sbcl os-windows)
 (defun make-test ()
   (asdf:load-system :lisp-webview)
-  (save-lisp-and-die "test-lisp-webview.EXE"
+  (save-lisp-and-die "test-lisp-webview.exe"
                      :toplevel (lambda (&rest ignore)
                                  (format t "~%test started~%")
                                  (funcall (intern "TESTWIN" (find-package "WEBVIEW")))
                                  (format t "~%test ended~%"))
                      :executable t ))
 
+#+(or linux darwin)
 (defun make-test ()
   (asdf:load-system :lisp-webview)
   (save-lisp-and-die "test-lisp-webview"
