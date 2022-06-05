@@ -20,7 +20,7 @@
 #+nil (webview::minor-version)
 
 
-#+(and sbcl os-windows)
+#+os-windows
 (defun make-test ()
   (asdf:load-system :lisp-webview)
   (save-lisp-and-die "test-lisp-webview.exe"
