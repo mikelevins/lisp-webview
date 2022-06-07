@@ -10,3 +10,5 @@
 =======
 /platform/linux/fedora64/test-lisp-webview
 >>>>>>> 757c67cb2c71a462c249df1241f2d32a9c05bab7
+/platform/linux/ubuntu/libwebview.so
+/platform/linux/ubuntu/test-lisp-webview

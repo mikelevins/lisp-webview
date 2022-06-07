@@ -4,7 +4,10 @@
   #+darwin
   (defparameter $webview-pathname (asdf:system-relative-pathname :lisp-webview "platform/macos/webview.dylib"))
   #+windows
-  (defparameter $webview-pathname (asdf:system-relative-pathname :lisp-webview "platform/win64/lisp_webview.dll")))
+  (defparameter $webview-pathname (asdf:system-relative-pathname :lisp-webview "platform/win64/lisp_webview.dll"))
+  #+linux
+  (defparameter $webview-pathname
+    (asdf:system-relative-pathname :lisp-webview "platform/linux/ubuntu/libwebview.so")))
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (progn
@@ -13,7 +16,8 @@
     #+(and windows sbcl) (sb-posix:chdir (asdf:system-relative-pathname :lisp-webview "platform/win64/"))
     #+(and windows allegro) (excl:chdir (asdf:system-relative-pathname :lisp-webview "platform/win64/"))
     (cffi::register-foreign-library 'webview `((:darwin ,$webview-pathname)
-                                             (:windows ,$webview-pathname)))))
+                                               (:windows ,$webview-pathname)
+                                               (:linux ,$webview-pathname)))))
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (cffi-sys::%load-foreign-library 'webview $webview-pathname))
@@ -27,4 +31,7 @@
 (cffi::defcfun (patch-version "patch_version" :library webview) :int)
 (cffi::defcfun (testwin "testwin" :library webview) (:pointer :void))
 
+#+nil (webview::major-version)
+#+nil (webview::minor-version)
+#+nil (webview::patch-version)
 #+nil (webview::testwin)
