@@ -30,6 +30,7 @@
 (cffi::defcfun (minor-version "minor_version" :library webview) :int)
 (cffi::defcfun (patch-version "patch_version" :library webview) :int)
 (cffi::defcfun (testwin "testwin" :library webview) (:pointer :void))
+(cffi::defcfun (closetestwin "closetestwin" :library webview) :void)
 
 #+nil (webview::major-version)
 #+nil (webview::minor-version)

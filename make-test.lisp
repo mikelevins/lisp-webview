@@ -1,6 +1,14 @@
 ;;;; lisp-webview.asd
 
+(in-package :cl-user)
+
 (defparameter +swank-port+ 10101)
+
+;;; ---------------------------------------------------------------------
+;;; toplevel test-window reference
+;;; ---------------------------------------------------------------------
+
+(defparameter *testwin* nil)
 
 ;;; ---------------------------------------------------------------------
 ;;; Windows
@@ -15,7 +23,7 @@
   (save-lisp-and-die "test-lisp-webview.exe"
                      :toplevel (lambda (&rest ignore)
                                  (format t "~%test started~%")
-                                 (funcall (intern "TESTWIN" (find-package "WEBVIEW")))
+                                 (setf *testwin* (funcall (intern "TESTWIN" (find-package "WEBVIEW"))))
                                  (format t "~%test ended~%"))
                      :executable t
                      :application-type :gui))
@@ -30,9 +38,9 @@
   (save-lisp-and-die "test-lisp-webview.exe"
                      :toplevel (lambda (&rest ignore)
                                  (funcall (intern "CREATE-SERVER" (find-package :swank))
-                                          :port +swank-port+ :dont-close t)
+                                          :port +swank-port+ :dont-close nil)
                                  (format t "~%test started~%")
-                                 (funcall (intern "TESTWIN" (find-package "WEBVIEW")))
+                                 (setf *testwin* (funcall (intern "TESTWIN" (find-package "WEBVIEW"))))
                                  (format t "~%test ended~%"))
                      :executable t
                      :application-type :gui))
@@ -50,7 +58,7 @@
   (save-lisp-and-die "test-lisp-webview"
                      :toplevel (lambda (&rest args)
                                  (format t "~%test started~%")
-                                 (funcall (intern "TESTWIN" (find-package "WEBVIEW")))
+                                 (setf *testwin* (funcall (intern "TESTWIN" (find-package "WEBVIEW"))))
                                  (format t "~%test ended~%"))
                      :executable t ))
 
@@ -66,6 +74,6 @@
                                  (funcall (intern "CREATE-SERVER" (find-package :swank))
                                           :port +swank-port+ :dont-close t)
                                  (format t "~%test started~%")
-                                 (funcall (intern "TESTWIN" (find-package "WEBVIEW")))
+                                 (setf *testwin* (funcall (intern "TESTWIN" (find-package "WEBVIEW"))))
                                  (format t "~%test ended~%"))
                      :executable t ))
