@@ -15,6 +15,7 @@
 
 
 #+nil (asdf:load-system :lisp-webview)
-#+nil (webview::patch-version)
+#+nil (webview::major-version)
 #+nil (webview::minor-version)
-
+#+nil (webview::patch-version)
+#+nil (webview::wvcreate 1 (cffi:null-pointer))

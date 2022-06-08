@@ -11,10 +11,12 @@
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (progn
+    ;; Windows:
     ;; we need the Lisp's working directory to be the win64 directory in order to find the
     ;; DLL dependencies
     #+(and windows sbcl) (sb-posix:chdir (asdf:system-relative-pathname :lisp-webview "platform/win64/"))
     #+(and windows allegro) (excl:chdir (asdf:system-relative-pathname :lisp-webview "platform/win64/"))
+    ;; import the foreign library into Lisp
     (cffi::register-foreign-library 'webview `((:darwin ,$webview-pathname)
                                                (:windows ,$webview-pathname)
                                                (:linux ,$webview-pathname)))))
@@ -29,8 +31,10 @@
 (cffi::defcfun (major-version "major_version" :library webview) :int)
 (cffi::defcfun (minor-version "minor_version" :library webview) :int)
 (cffi::defcfun (patch-version "patch_version" :library webview) :int)
-(cffi::defcfun (testwin "testwin" :library webview) (:pointer :void))
-(cffi::defcfun (closetestwin "closetestwin" :library webview) :void)
+(cffi::defcfun (testwin "testwin" :library webview) :void)
+
+(cffi::defcfun (wvcreate "wvcreate" :library webview) (:pointer :void)(debug :int)(window (:pointer :null)))
+
 
 #+nil (webview::major-version)
 #+nil (webview::minor-version)

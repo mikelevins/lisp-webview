@@ -22,6 +22,7 @@
   (asdf:load-system :lisp-webview)
   (save-lisp-and-die "test-lisp-webview.exe"
                      :toplevel (lambda (&rest ignore)
+                                 (declare (ignore ignore))
                                  (format t "~%test started~%")
                                  (setf *testwin* (funcall (intern "TESTWIN" (find-package "WEBVIEW"))))
                                  (format t "~%test ended~%"))
@@ -37,6 +38,7 @@
   (asdf:load-system :lisp-webview)
   (save-lisp-and-die "test-lisp-webview.exe"
                      :toplevel (lambda (&rest ignore)
+                                 (declare (ignore ignore))
                                  (funcall (intern "CREATE-SERVER" (find-package :swank))
                                           :port +swank-port+ :dont-close nil)
                                  (format t "~%test started~%")
@@ -57,6 +59,7 @@
   (asdf:load-system :lisp-webview)
   (save-lisp-and-die "test-lisp-webview"
                      :toplevel (lambda (&rest args)
+                                 (declare (ignore ignore))
                                  (format t "~%test started~%")
                                  (setf *testwin* (funcall (intern "TESTWIN" (find-package "WEBVIEW"))))
                                  (format t "~%test ended~%"))
@@ -71,6 +74,7 @@
   (asdf:load-system :lisp-webview)
   (save-lisp-and-die "test-lisp-webview"
                      :toplevel (lambda (&rest args)
+                                 (declare (ignore ignore))
                                  (funcall (intern "CREATE-SERVER" (find-package :swank))
                                           :port +swank-port+ :dont-close t)
                                  (format t "~%test started~%")
