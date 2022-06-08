@@ -28,15 +28,30 @@
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (sb-int:set-floating-point-modes :traps nil))
 
+
+;;; Window size hints
+(defparameter +WEBVIEW-HINT-NONE+ 0)  ;; Width and height are default size
+(defparameter +WEBVIEW-HINT-MIN+ 1)   ;; Width and height are minimum bounds
+(defparameter +WEBVIEW-HINT-MAX+ 2)   ;; Width and height are maximum bounds
+(defparameter +WEBVIEW-HINT-FIXED+ 3) ;; Window size can not be changed by a user
+
+
 (cffi::defcfun (major-version "major_version" :library webview) :int)
 (cffi::defcfun (minor-version "minor_version" :library webview) :int)
 (cffi::defcfun (patch-version "patch_version" :library webview) :int)
 (cffi::defcfun (testwin "testwin" :library webview) :void)
 
-(cffi::defcfun (wvcreate "wvcreate" :library webview) (:pointer :void)(debug :int)(window (:pointer :null)))
+(cffi::defcfun (wv-create "wv_create" :library webview) (:pointer :void)(debug :int)(window (:pointer :void)))
+(cffi::defcfun (wv-destroy "wv_destroy" :library webview) :void (window (:pointer :void)))
+(cffi::defcfun (wv-run "wv_run" :library webview) :void (window (:pointer :void)))
+(cffi::defcfun (wv-terminate "wv_terminate" :library webview) :void (window (:pointer :void)))
+(cffi::defcfun (wv-get-window "wv_get_window" :library webview) (:pointer :void) (window (:pointer :void)))
+(cffi::defcfun (wv-set-title "wv_set_title" :library webview) :void (window (:pointer :void)) (title :string))
+(cffi::defcfun (wv-set-size "wv_set_size" :library webview) :void
+  (window (:pointer :void))(width :int)(height :int)(hints :int))
+(cffi::defcfun (wv-navigate "wv_navigate" :library webview) :void (window (:pointer :void)) (url :string))
+(cffi::defcfun (wv-set-html "wv_set_html" :library webview) :void (window (:pointer :void)) (html :string))
+(cffi::defcfun (wv-init "wv_init" :library webview) :void (window (:pointer :void)) (js :string))
+(cffi::defcfun (wv-eval "wv_eval" :library webview) :void (window (:pointer :void)) (js :string))
 
 
-#+nil (webview::major-version)
-#+nil (webview::minor-version)
-#+nil (webview::patch-version)
-#+nil (webview::testwin)
