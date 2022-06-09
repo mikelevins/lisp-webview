@@ -20,10 +20,16 @@
           (webview::minor-version)
           (webview::patch-version))
   (let* ((w (webview::wv-create 1 (cffi:null-pointer))))
+    (setf *testwin* w)
     (webview::wv-set-title w "Webview Test")
     (webview::wv-set-size w 1280 1020 0)
-    (webview::wv-navigate w "https://www.apple.com")
-    (webview::wv-run w)))
+    (webview::wv-navigate w "https://www.google.com")
+    (webview::wv-run w)
+    ;;(webview::wv-destroy w)
+    ))
+
+#+nil (webview::wv-set-title *testwin* "Some random title")
+#+nil (webview::wv-destroy *testwin*)
 
 ;;; ---------------------------------------------------------------------
 ;;; Windows
@@ -32,7 +38,7 @@
 ;;; without swank server
 ;;; ---------------------------------------------------------------------
 
-#+win32
+#+nil
 (defun make-test ()
   (asdf:load-system :lisp-webview)
   (save-lisp-and-die "test-lisp-webview.exe"
@@ -47,7 +53,7 @@
 ;;; with swank server
 ;;; ---------------------------------------------------------------------
 
-#+nil
+#+win32
 (defun make-test ()
   (ql:quickload :swank)
   (asdf:load-system :lisp-webview)
