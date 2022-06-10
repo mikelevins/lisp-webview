@@ -97,7 +97,7 @@
                      :toplevel (lambda (&rest args)
                                  (declare (ignore ignore))
                                  (funcall (intern "CREATE-SERVER" (find-package :swank))
-                                          :port +swank-port+ :dont-close t)
+                                          :port +swank-port+ :dont-close t :style :spawn)
                                  (format t "~%test started~%")
                                  (test-webview)
                                  (format t "~%test ended~%"))
