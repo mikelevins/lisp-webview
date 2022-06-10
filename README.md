@@ -33,9 +33,43 @@ This code loads the webview shared library into the same process as the Lisp. It
 Ensure that the Xcode command-line tools are installed:
 
     xcode-select --install
+    
+Ensure that sbcl is installed; for example:
+
+    brew install sbcl
+    
+cd into the platform/macos directory and run make.
+
+cd back to the root directory and run make.
+
+The result is the executable test-lisp-webview. Run it from the terminal and you should see a window appear and display a web page. You can connect to the Lisp in the running webview from Emacs using M-x slime connect. When prompted for the host, give 'localhost', and when prompted for the port give '10101'.
 
 ### Windows
+
+Ensure that the Visual Studio (2019 or better) tools are installed. Open an x64 Native Tools Command Prompt.
+
+Ensure that sbcl is installed: http://www.sbcl.org/platform-table.html
+
+cd into the platform/win64 directory and run make.bat.
+
+cd into the root of the project and run make.bat.
+
+The result is the executable platform\win64\test-lisp-webview.exe. Run it from the CMD prompt and you should see a window appear and display a web page. You can connect to the Lisp in the running webview from Emacs using M-x slime connect. When prompted for the host, give 'localhost', and when prompted for the port give '10101'.
+
+For the program to work, you may have to modify your Windows configuration to permit client connections to local HTTP servers. Googling for any error messages displayed is how I've solved this problem in the past.
+
 ### Ubuntu
+
+Ensure that libwebkit2gtk and libwebkit2gtk-dev are installed.
+
+Ensure that sbcl is installed. apt-get install sbcl, or see http://www.sbcl.org/platform-table.html
+
+cd into the platform/linux/ubuntu directory and run make.
+
+cd into the root of the project and run make.
+
+The result is the executable test-lisp-webview. Run it from the terminal and you should see a window appear and display a web page. You can connect to the Lisp in the running webview from Emacs using M-x slime connect. When prompted for the host, give 'localhost', and when prompted for the port give '10101'.
+
 
 ## License
 
