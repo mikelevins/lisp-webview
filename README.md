@@ -29,6 +29,11 @@ This code loads the webview shared library into the same process as the Lisp. It
 ## To build the platform-specific libraries
 
 ### Macos
+
+Ensure that the Xcode command-line tools are installed:
+
+    xcode-select --install
+
 ### Windows
 ### Ubuntu
 
